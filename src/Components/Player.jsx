@@ -8,19 +8,25 @@ import { CiMinimize1 } from "react-icons/ci";
 import { AiFillSound } from "react-icons/ai";
 import { MdAirplay } from "react-icons/md";
 import { RiReplay10Line } from "react-icons/ri";
+import songs from "../assets/songs";
 const Player = () => {
         return(
           
             <div className="flex h-[10%] cursor-pointer">
                
-                <div className="w-[14.2%] bg-[#123412] m-1 mt-[-2px] ml-2 rounded p-4 flex text-white">
+                <div className="w-[14.2%] bg-[#123412] m-1 mt-[-2px] ml-2 rounded p-4 flex text-white overflow-hidden">
                     <div className="flex flex-row items-center gap-2">
-                        <img src="vite.svg" alt="" />
+                        <img src={songs[1].cover} width={80} height={80} alt="" />
                         <div className="flex flex-col justify-center">
-                            <h1>Song Name</h1>
-                            <h1 className="font-bold">Singer Name</h1>
+                            <h1>{songs[1].name}</h1>
+                            <h1 className="font-bold">{songs[1].singer}</h1>
+                            <p>{songs[1].album}</p>
+                            <div className="flex flex-row gap-2">
+                            <p>{songs[1].genre}</p>
+                            <p>{songs[1].year}</p>
+                            </div>
+                        
                         </div>
-
                     </div>
                 </div>
 
