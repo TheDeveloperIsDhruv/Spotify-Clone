@@ -52,7 +52,7 @@ const Player = () => {
                 </div>
 
                 <div className="w-[15%] bg-[#123412] rounded flex m-1 mt-[1px] text-white cursor-pointer">
-                    <div className="flex flex-row items-center justify-center p-1 gap-2 text-2xl">
+                    <div className="flex flex-row items-center justify-center p-1 gap-2 text-xl">
                         <MdAirplay />
                         <div className="flex flex-row items-center gap-1">
                             <AiFillSound />
@@ -63,7 +63,6 @@ const Player = () => {
                                 </div>
                             </div>
                         </div>
-                        
                         <CiMinimize1 />
                     </div>
                 </div>

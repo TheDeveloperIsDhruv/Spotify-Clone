@@ -3,6 +3,7 @@ import './App.css'
 import Sidebar from './Components/Sidebar'
 import Player from './Components/Player'
 import Navbar from './Components/Navbar'
+import Music from './Components/Music'
 
 function App() {
 return(
@@ -14,6 +15,7 @@ return(
             <div className='mt-3 w-full '>
             <Navbar />
             </div>
+            <Music />
       </div>
       </div>
        <Player></Player>
