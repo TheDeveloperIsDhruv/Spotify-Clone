@@ -1,12 +1,31 @@
-# React + Vite
+🎵 Spotify Clone
+A fully responsive Spotify Clone built using React.js and Tailwind CSS, mimicking core features of the popular music streaming platform. Users can browse playlists, play songs, and enjoy a sleek, modern interface. This project showcases front-end development skills, API integration, and state management.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🚀 Features
+🎧 Browse and play music
 
-Currently, two official plugins are available:
+🔍 Search for songs, artists, or albums
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📁 View playlists and album details
 
-## Expanding the ESLint configuration
+🎵 Audio player with play/pause, skip, and volume controls
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+⚡ Smooth animations and transitions
+
+📱 Responsive design for mobile, tablet, and desktop
+
+🛠️ Tech Stack
+React JS – Frontend library for building UI components
+
+Tailwind CSS – Utility-first CSS framework for styling
+
+React Router – Client-side routing for seamless navigation
+
+Redux / Zustand / Context API – (Choose one you used) for global state management
+
+Spotify Web API or Dummy JSON Data – For fetching music-related data
+
+Heroicons / FontAwesome – For icons
+
+Vite / Create React App – For project bootstrapping and fast dev environment
+
