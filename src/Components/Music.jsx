@@ -3,8 +3,10 @@ import songs from "../assets/songs";
 import albums from "../assets/albums";
 import playlists from "../assets/playlists";
 import artists from "../assets/artists";
+import { useNavigate } from "react-router-dom";
 
-const Music = () => { 
+const Music = () => {
+    const navigate=useNavigate(); 
     return(
         <div className="w-full h-full flex flex-col overflow-y-auto scrollbar-hide">
                     {/* Top Songs */}
@@ -30,7 +32,7 @@ const Music = () => {
                                 <div className="bg-black rounded-lg w-full max-w-7xl mx-auto scrollbar-hide">
                                     <div className="flex gap-9 overflow-x-auto snap-center snap-mandatory scroll-smooth flex-nowrap scrollbar-hide">
                                         {albums.map((album, idx) => (
-                                            <div className="snap-center min-w-[180px]" key={idx}>
+                                            <div className="snap-center min-w-[180px]" key={idx} onClick={() => navigate(`/album/${idx}`)}>
                                                 <img src={album.image} className="w-80 h-50 object-cover rounded-lg" />
                                             </div>
                                         ))}
@@ -46,7 +48,7 @@ const Music = () => {
                                     <div className="bg-black rounded-lg w-full max-w-7xl mx-auto scrollbar-hide">
                                         <div className="flex gap-9 overflow-x-auto snap-center snap-mandatory scroll-smooth flex-nowrap scrollbar-hide">
                                             {playlists.map((playlist, idx) => (
-                                                <div className="snap-center min-w-[180px]" key={idx}>
+                                                <div className="snap-center min-w-[180px]" key={idx} onClick={()=>navigate(`/playlist/${idx}`)}>
                                                     <img src={playlist.image} className="w-80 h-50 object-cover rounded-lg" />
                                                 </div>
                                             ))}

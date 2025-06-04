@@ -4,11 +4,13 @@ import { FaSearch } from "react-icons/fa";
 import { BsStack } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const Sidebar = () => {
+    const navigate = useNavigate();
     return (
         <div className="w-[15%] rounded p-2 flex-col text-white hidden lg:flex ">
             <div className="bg-[#123412] h-[15%] rounded flex flex-col justify-around">
-                     <div className="flex items-center gap-2 pl-8 cursor-pointer">
+                     <div className="flex items-center gap-2 pl-8 cursor-pointer" onClick={()=>navigate("/")}>
                         <FaHome className="size-6"/>
                         <p className="font-bold">Home</p>
                      </div>
