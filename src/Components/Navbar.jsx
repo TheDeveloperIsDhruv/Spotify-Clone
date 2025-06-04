@@ -1,7 +1,10 @@
 import React from "react";
 import { GrFormPrevious } from "react-icons/gr";
 import { GrFormNext } from "react-icons/gr";
+import { useNavigate,useLocation } from "react-router-dom";
 const Navbar = () => {
+    const navigate= useNavigate();
+    const location=useLocation();
     return(
         <div>
                 <div className="flex flex-row w-full  ">
@@ -15,12 +18,14 @@ const Navbar = () => {
                         <button className="rounded-full bg-[green] w-9 cursor-pointer ">DP</button>
                     </div>
                 </div>
-
-                <div className="flex flex-row gap-4 text-xl mt-2">
-                    <button className="rounded-xl text-black bg-[white] w-14 cursor-pointer">All</button>
-                    <button className="rounded-xl cursor-pointer">Music</button>
-                    <button className="rounded-xl cursor-pointer">Podcasts</button>
+                
+            {/* Header */}
+               <div className="flex flex-row gap-4 text-xl mt-2">
+                    <button className={`rounded-xl ${location.pathname==='/' ? "bg-[white] text-black": "bg-black font-white"} w-14 cursor-pointer`}onClick={()=>navigate("/")} >All</button>
+                    <button className={`rounded-xl p-[4px] ${location.pathname==='/TopMusic' ? "bg-[white] text-black": "bg-black font-white"}  cursor-pointer`} onClick={()=>navigate(`/TopMusic`)}>Music</button>
+                    <button className={`rounded-xl p-[4px] cursor-pointer ${location.pathname==='/Podcasts' ? "bg-[white] text-black": "bg-black font-white"}`}>Podcasts</button>
                 </div>
+
         </div>
     )
 }

@@ -14,9 +14,9 @@ const Sidebar = () => {
                         <FaHome className="size-6"/>
                         <p className="font-bold">Home</p>
                      </div>
-                        <div className="flex items-center gap-4 pl-8 cursor-pointer">
+                        <div className="flex items-center gap-2 pl-8 cursor-pointer">
                             <FaSearch className="size-6"/>
-                            <p className="font-bold">Home</p>
+                            <p className="font-bold">Search</p>
                         </div>
             </div>
             <div className="bg-[#1e201e] h-[85%] flex flex-col rounded mt-2 cursor-pointer p-2 ">

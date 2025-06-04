@@ -3,12 +3,14 @@ import songs from "../assets/songs";
 import albums from "../assets/albums";
 import playlists from "../assets/playlists";
 import artists from "../assets/artists";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 const Music = () => {
-    const navigate=useNavigate(); 
+    const navigate=useNavigate();
+   
     return(
         <div className="w-full h-full flex flex-col overflow-y-auto scrollbar-hide">
+
                     {/* Top Songs */}
                     <div className="text-white mt-4 w-full flex flex-col"> 
                         <h1 className="text-4xl m-4 font-semibold">Top Songs</h1>
