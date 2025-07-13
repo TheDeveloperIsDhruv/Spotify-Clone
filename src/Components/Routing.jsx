@@ -4,6 +4,7 @@ import Music from "./Music";
 import AlbumDetails from "./AlbumDetails";
 import PlaylistDetails from "./PlaylistDetails";
 import TopMusic from "./TopMusic";
+import Podcasts from "./Podcasts";
 
 const Routing = () => {
     return(
@@ -12,6 +13,7 @@ const Routing = () => {
                 <Route path="/album/:albumid" element={<AlbumDetails></AlbumDetails>}></Route>
                 <Route path='/playlist/:playlistid' element={<PlaylistDetails/>}></Route>
                 <Route path='/TopMusic' element={<TopMusic/>}></Route>
+                <Route path="/Podcasts" element={<Podcasts/>}></Route>
                 {/* Add more routes here as needed */}
             </Routes>
     );
