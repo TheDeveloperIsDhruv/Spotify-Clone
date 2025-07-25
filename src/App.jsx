@@ -9,9 +9,9 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 function App() {
 return(
-  <div className='h-screen bg-black'>
+  <div className='h-screen flex flex-col bg-black'>
     <Router>
-      <div className='h-[90%] flex text-white'>
+      <div className='h-[88%] flex text-white'>
       <Sidebar className='w-[20%]'></Sidebar>
       <div className='w-full flex flex-col  mt-2'>
             <h1 className='flex justify-center font-bold text-4xl'>Spotify Clone</h1>

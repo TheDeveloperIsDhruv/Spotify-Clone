@@ -31,7 +31,7 @@ const Sidebar = () => {
                         )}
                        
             </div>
-            <div className="bg-[#1e201e] h-[85%] flex flex-col rounded mt-2 cursor-pointer p-2 ">
+            <div className="bg-[#1e201e] h-[83%] flex flex-col rounded mt-2 cursor-pointer p-2 ">
                     <div className=" flex flex-row  cursor-pointer">
                         <div className="flex justify-start gap-2 basis-2/3">
                         <BsStack className="size-6"/>

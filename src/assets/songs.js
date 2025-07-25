@@ -6,7 +6,8 @@ const songs = [
     album: "After Hours",
     year: 2019,
     genre: "Synth-pop",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/The_Weeknd_-_Blinding_Lights.png/250px-The_Weeknd_-_Blinding_Lights.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e6/The_Weeknd_-_Blinding_Lights.png/250px-The_Weeknd_-_Blinding_Lights.png",
+    duration:200,
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ const songs = [
     album: "÷ (Divide)",
     year: 2017,
     genre: "Pop",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png/250px-Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png/250px-Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png",
+    duration: 233 
   },
   {
     id: 3,
@@ -24,7 +26,8 @@ const songs = [
     album: "Future Nostalgia",
     year: 2020,
     genre: "Disco-pop",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Dua_Lipa_Levitating_%28DaBaby_Remix%29.png/250px-Dua_Lipa_Levitating_%28DaBaby_Remix%29.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/3/3d/Dua_Lipa_Levitating_%28DaBaby_Remix%29.png/250px-Dua_Lipa_Levitating_%28DaBaby_Remix%29.png",
+    duration: 203,
   },
   {
     id: 4,
@@ -33,7 +36,8 @@ const songs = [
     album: "21",
     year: 2011,
     genre: "Soul",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Adele_-_Someone_Like_You.png/250px-Adele_-_Someone_Like_You.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Adele_-_Someone_Like_You.png/250px-Adele_-_Someone_Like_You.png",
+    duration: 285,
   },
   {
     id: 5,
@@ -42,7 +46,8 @@ const songs = [
     album: "Uptown Special",
     year: 2014,
     genre: "Funk-pop",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Mark_Ronson_-_Uptown_Funk_%28feat._Bruno_Mars%29_%28Official_Single_Cover%29.png/250px-Mark_Ronson_-_Uptown_Funk_%28feat._Bruno_Mars%29_%28Official_Single_Cover%29.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Mark_Ronson_-_Uptown_Funk_%28feat._Bruno_Mars%29_%28Official_Single_Cover%29.png/250px-Mark_Ronson_-_Uptown_Funk_%28feat._Bruno_Mars%29_%28Official_Single_Cover%29.png",
+    duration: 269,
   },
   {
     id: 6,
@@ -51,7 +56,8 @@ const songs = [
     album: "Shawn Mendes (Deluxe)",
     year: 2019,
     genre: "Latin pop",
-    cover: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Shawn_Mendes_and_Camila_Cabello_-_Se%C3%B1orita.png/250px-Shawn_Mendes_and_Camila_Cabello_-_Se%C3%B1orita.png"
+    cover: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Shawn_Mendes_and_Camila_Cabello_-_Se%C3%B1orita.png/250px-Shawn_Mendes_and_Camila_Cabello_-_Se%C3%B1orita.png",
+    duration: 183,
   },
   {
     id: 7,
@@ -60,7 +66,8 @@ const songs = [
     album: "Justice",
     year: 2021,
     genre: "R&B",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Justin_Bieber_-_Peaches.png/250px-Justin_Bieber_-_Peaches.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0a/Justin_Bieber_-_Peaches.png/250px-Justin_Bieber_-_Peaches.png",
+    duration: 197,
   },
   {
     id: 8,
@@ -69,7 +76,8 @@ const songs = [
     album: "F*CK LOVE 3",
     year: 2021,
     genre: "Pop rap",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/The_Kid_Laroi_and_Justin_Bieber_-_Stay.png/250px-The_Kid_Laroi_and_Justin_Bieber_-_Stay.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/The_Kid_Laroi_and_Justin_Bieber_-_Stay.png/250px-The_Kid_Laroi_and_Justin_Bieber_-_Stay.png",
+    duration: 122,
   },
   {
     id: 9,
@@ -78,7 +86,8 @@ const songs = [
     album: "=",
     year: 2021,
     genre: "Dance-pop",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Ed_Sheeran_-_Bad_Habits_2.png/250px-Ed_Sheeran_-_Bad_Habits_2.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Ed_Sheeran_-_Bad_Habits_2.png/250px-Ed_Sheeran_-_Bad_Habits_2.png",
+    duration: 200,
   },
   {
     id: 10,
@@ -87,7 +96,8 @@ const songs = [
     album: "30",
     year: 2021,
     genre: "Pop",
-    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/4/48/Adele_-_Easy_on_Me.png/250px-Adele_-_Easy_on_Me.png"
+    cover: "https://upload.wikimedia.org/wikipedia/en/thumb/4/48/Adele_-_Easy_on_Me.png/250px-Adele_-_Easy_on_Me.png",
+    duration: 245,
   }
 ];
 
