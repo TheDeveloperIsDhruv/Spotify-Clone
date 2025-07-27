@@ -5,19 +5,24 @@ import { CiMinimize1 } from "react-icons/ci";
 import { AiFillSound } from "react-icons/ai";
 import { RiReplay10Line } from "react-icons/ri";
 import songs from "../assets/songs";
+import { useParams } from "react-router-dom";
 
-const Player = () => {
+const Player = ({id}) => {
     const [currentSongIdx, setCurrentSongIdx] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const [playerData, setPlayerData] = useState(null);
     const audioRef = useRef(null);
+   
 
-    const song = songs[currentSongIdx];
-    const duration = song.duration; 
+    let song = null;
+    console.log("Player component rendered with id:");
+    console.log(id);
+    song= songs.find((s) => s.id === parseInt(id)) || songs[currentSongIdx];
+
     const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
-
-    // Play or pause audio
     useEffect(() => {
         if (audioRef.current) {
             if (isPlaying) {
@@ -28,17 +33,14 @@ const Player = () => {
         }
     }, [isPlaying, currentSongIdx]);
 
-    // Update currentTime as audio plays
     const handleTimeUpdate = () => {
         setCurrentTime(audioRef.current.currentTime);
     };
 
-    // Set duration when metadata is loaded
     const handleLoadedMetadata = () => {
         setDuration(audioRef.current.duration);
     };
 
-    // Seek when clicking the progress bar
     const handleSeek = (e) => {
         const bar = e.target.getBoundingClientRect();
         const clickX = e.clientX - bar.left;
@@ -48,46 +50,40 @@ const Player = () => {
         setCurrentTime(seekTime);
     };
 
-    // Format seconds to mm:ss
     const formatTime = (sec) => {
         const m = Math.floor(sec / 60);
         const s = Math.floor(sec % 60);
         return `${m}:${s.toString().padStart(2, "0")}`;
     };
 
-    // Next song
     const handleNext = () => {
         setCurrentSongIdx((prev) => (prev + 1) % songs.length);
         setCurrentTime(0);
     };
 
-    // Previous song
     const handlePrev = () => {
         setCurrentSongIdx((prev) => (prev - 1 + songs.length) % songs.length);
         setCurrentTime(0);
     };
 
-    // Replay 10 seconds
     const handleReplay10 = () => {
         const newTime = Math.max(currentTime - 10, 0);
         audioRef.current.currentTime = newTime;
         setCurrentTime(newTime);
     };
 
-    // When song ends, go to next
     const handleEnded = () => {
         handleNext();
         setIsPlaying(true);
     };
 
-  
     return (
         <div className="flex h-33 cursor-pointer overflow-hidden rounded-lg">
             {/* Left: Song Info */}
-            <div className="w-[22%]  bg-[#123412] m-1  ml-1 rounded p-3 flex text-white overflow-hidden">
+            <div className="w-[22%] bg-[#123412] m-1 ml-1 rounded p-3 flex text-white overflow-hidden">
                 <div className="flex flex-row items-center gap-3">
-                    <img src={song.cover} width={80} height={80} alt="" />
-                    <div className="flex flex-col  justify-center">
+                    <img src={song.cover} width={80} height={80} alt={song.name} />
+                    <div className="flex flex-col justify-center">
                         <h1>{song.name}</h1>
                         <h1 className="font-bold">{song.singer}</h1>
                         <p>{song.album}</p>
@@ -103,7 +99,7 @@ const Player = () => {
             <div className="w-[70%] bg-[#1e201e] mb-1 text-white font-bold rounded flex flex-col ">
                 <audio
                     ref={audioRef}
-                    src={song.audio} // Make sure this is a valid audio file URL
+                    src={song.audio}
                     onTimeUpdate={handleTimeUpdate}
                     onLoadedMetadata={handleLoadedMetadata}
                     onEnded={handleEnded}

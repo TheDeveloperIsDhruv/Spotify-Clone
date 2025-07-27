@@ -4,11 +4,18 @@ import Sidebar from './Components/Sidebar'
 import Player from './Components/Player'
 import Navbar from './Components/Navbar'
 import Music from './Components/Music'
-import Routing from './Components/Routing'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AlbumDetails from './Components/AlbumDetails';
+import PlaylistDetails from './Components/PlaylistDetails';
+import TopMusic from './Components/TopMusic';
+import Podcasts from './Components/Podcasts';
+import songs from './assets/songs';
+import { useEffect, useRef } from 'react';
 
 function App() {
-return(
+   const [currentSongId, setCurrentSongId] = useState(null);
+
+  return(
   <div className='h-screen flex flex-col bg-black'>
     <Router>
       <div className='h-[88%] flex text-white'>
@@ -18,11 +25,19 @@ return(
             <div className='mt-3 w-full '>
             <Navbar />
             </div>
-            <Routing />
+            <Routes>
+                <Route path="/" element={<Music onsongSelect={setCurrentSongId} />} />
+                <Route path="/album/:albumid" element={<AlbumDetails></AlbumDetails>}></Route>
+                <Route path='/playlist/:playlistid' element={<PlaylistDetails/>}></Route>
+                <Route path='/TopMusic' element={<TopMusic/>}></Route>
+                <Route path="/Podcasts" element={<Podcasts/>}></Route>
+                <Route path="/Player/:id" element={<Player/>}></Route>
+                {/* Add more routes here as needed */}
+            </Routes>
       </div>
       </div>
-       <Player></Player>
-       </Router>
+       <Player id={currentSongId}></Player>
+   </Router>
   </div>
 )
 }

@@ -4,10 +4,11 @@ import albums from "../assets/albums";
 import playlists from "../assets/playlists";
 import artists from "../assets/artists";
 import { useNavigate} from "react-router-dom";
-
-const Music = () => {
-    const navigate=useNavigate();
-   
+import Player from "./Player";
+import { useState } from "react";
+const Music = ({onsongSelect}) => {
+        const navigate=useNavigate();
+        const [currentSongIdx, setCurrentSongIdx] = useState(0);
     return(
         <div className="w-full h-full flex flex-col overflow-y-auto scrollbar-hide">
 
@@ -15,11 +16,11 @@ const Music = () => {
                     <div className="text-white mt-4 w-full flex flex-col"> 
                         <h1 className="text-4xl m-4 font-semibold">Top Songs</h1>
                     
-                                <div className="bg-black rounded-lg w-full max-w-7xl mx-auto scrollbar-hide">
+                                <div className="bg-black rounded-lg w-full max-w-7xl mx-auto scrollbar-hide" >
                                     <div className="flex gap-9 overflow-x-auto snap-center snap-mandatory scroll-smooth flex-nowrap scrollbar-hide">
                                         {songs.map((song, idx) => (
                                             <div className="snap-center min-w-[180px]" key={idx}>
-                                                <img src={song.cover} className="w-80 h-50 object-cover rounded-lg" />
+                                                <img src={song.cover} className="w-80 h-50 object-cover rounded-lg" onClick={() => onsongSelect(song.id)}/>
                                             </div>
                                         ))}
                                     </div>
