@@ -10,6 +10,7 @@ import PlaylistDetails from './Components/PlaylistDetails';
 import TopMusic from './Components/TopMusic';
 import Podcasts from './Components/Podcasts';
 import songs from './assets/songs';
+import TopArtistDetails from './Components/TopArtistDetails';
 import { useEffect, useRef } from 'react';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                 <Route path='/TopMusic' element={<TopMusic/>}></Route>
                 <Route path="/Podcasts" element={<Podcasts/>}></Route>
                 <Route path="/Player/:id" element={<Player/>}></Route>
+                <Route path='/TopArtists/:id' element={<TopArtistDetails/>}></Route>
                 {/* Add more routes here as needed */}
             </Routes>
       </div>

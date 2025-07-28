@@ -2,7 +2,9 @@ import React from "react";
 
 const PlaylistDetails = () => {
     return(
-        <h1>Yes working for Playlist!</h1>
+        <div className="flex flex-col items-center justify-center h-screen">
+        <h1 className="text-4xl font-bold">Yes it is working for Top Playlists!</h1>
+        </div>
     );
 }
 export default PlaylistDetails;
