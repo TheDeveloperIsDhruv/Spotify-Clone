@@ -17,8 +17,8 @@ const Player = ({id}) => {
    
 
     let song = null;
-    console.log("Player component rendered with id:");
-    console.log(id);
+    // console.log("Player component rendered with id:");
+    // console.log(id);
     song= songs.find((s) => s.id === parseInt(id)) || songs[currentSongIdx];
 
     const progressPercent = duration ? (currentTime / duration) * 100 : 0;

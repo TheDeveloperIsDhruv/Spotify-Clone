@@ -11,6 +11,7 @@ import TopMusic from './Components/TopMusic';
 import Podcasts from './Components/Podcasts';
 import songs from './assets/songs';
 import TopArtistDetails from './Components/TopArtistDetails';
+import LoginPage from './Components/LoginPage';
 import { useEffect, useRef } from 'react';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Navbar />
             </div>
             <Routes>
+                <Route path="/login" element={<LoginPage />}></Route>
                 <Route path="/" element={<Music onsongSelect={setCurrentSongId} />} />
                 <Route path="/album/:albumid" element={<AlbumDetails></AlbumDetails>}></Route>
                 <Route path='/playlist/:playlistid' element={<PlaylistDetails/>}></Route>
