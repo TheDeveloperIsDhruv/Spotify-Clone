@@ -3,11 +3,12 @@ import { GrFormPrevious } from "react-icons/gr";
 import { GrFormNext } from "react-icons/gr";
 import { HiH1 } from "react-icons/hi2";
 import { useNavigate,useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState,useRef, useEffect } from "react";
 const Navbar = () => {
     const navigate= useNavigate();
     const location=useLocation();
-    const [showLogin,handleLogin]=React.useState(false);
+    const [showLogin, setShowLogin] = useState(false);
+    const dropdownRef = useRef(null);
 
     const handleNext=()=>{
         if(location.pathname==='/'){
@@ -25,17 +26,21 @@ const Navbar = () => {
         }
     }
     
-    const handleLoginPage=()=>{
-        if (!showLogin){
-            navigate('/login');
-            handleLogin(true);
-    }
-    else{
-            navigate('/');
-            handleLogin(false);
-            
-        }
-    }
+
+  const handleLoginPage = () => {
+    setShowLogin((prev) => !prev);
+  };
+
+  // Close dropdown if clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowLogin(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
 
     return(
@@ -48,7 +53,24 @@ const Navbar = () => {
                     <div className="flex justify-end w-[40%] p-2 h-[50px] mr-2 gap-4 text-xl">
                         <button className="rounded-xl bg-[white] text-black p-1 cursor-pointer">Explore Premium</button>
                         <button className="rounded-xl font-semibold cursor-pointer">Install App</button>
-                        <button className="rounded-full bg-[green] w-9 cursor-pointer" onClick={()=>handleLoginPage()}>DP</button>
+                        <div className="relative inline-block" ref={dropdownRef}>
+                        <button
+                            className="rounded-full bg-green-600 text-white w-9 h-9 flex items-center justify-center font-bold cursor-pointer hover:bg-green-700 transition duration-200"
+                            onClick={handleLoginPage}> DP </button>
+                        {showLogin && (
+                            <div
+                            className="flex flex-col absolute text-black mt-2 w-30 bg-gray-100 rounded-xl shadow-md p-2 z-50
+                                        animate-fade-in-down transition duration-200"
+                            >
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-400 rounded" onClick={()=>navigate('/login')}>
+                                Login
+                            </button>
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-400 rounded">
+                                Sign Up
+                            </button>
+                            </div>
+                        )}
+                         </div>
                         <button className="bg-gray-600 rounded-xl p-1 cursor-pointer" onClick={()=>navigate(`/login`)}>Logout</button>
                     </div>
                 </div>
