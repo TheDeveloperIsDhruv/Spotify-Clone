@@ -65,7 +65,7 @@ const Navbar = () => {
                             <button className="block w-full text-left px-4 py-2 hover:bg-gray-400 rounded" onClick={()=>navigate('/login')}>
                                 Login
                             </button>
-                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-400 rounded">
+                            <button className="block w-full text-left px-4 py-2 hover:bg-gray-400 rounded" onClick={()=>navigate(`/signup`)}>
                                 Sign Up
                             </button>
                             </div>

@@ -12,6 +12,7 @@ import Podcasts from './Components/Podcasts';
 import songs from './assets/songs';
 import TopArtistDetails from './Components/TopArtistDetails';
 import LoginPage from './Components/LoginPage';
+import SignUp from './Components/SignUp';
 import { useEffect, useRef } from 'react';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             </div>
             <Routes>
                 <Route path="/login" element={<LoginPage />}></Route>
+                <Route path='/signup' element={<SignUp/>}></Route>
                 <Route path="/" element={<Music onsongSelect={setCurrentSongId} />} />
                 <Route path="/album/:albumid" element={<AlbumDetails></AlbumDetails>}></Route>
                 <Route path='/playlist/:playlistid' element={<PlaylistDetails/>}></Route>

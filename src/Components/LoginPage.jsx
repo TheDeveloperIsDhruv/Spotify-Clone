@@ -13,9 +13,6 @@ const LoginPage=()=>{
                         <h1 className="text-2xl mb-2">Password:</h1>
                         <input type="password" placeholder="Enter your password" className=" border-2 border-white focus:border-pink-600"/>
                     </div>
-
-
-
             </div>
 
         </div>
