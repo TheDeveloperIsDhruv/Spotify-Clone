@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json()); // Middleware to parse JSON request bodies
 
 app.get("/", (req, res) => {
-  res.send("Hello, Express with ES Modules!");
+  res.send("Hello, community!");
 });
 
 app.post('/api/submit-form',(req,res)=>{

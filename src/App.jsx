@@ -67,10 +67,11 @@ function App() {
   }
 
   return (
-    <Router>
-      <Main />
-    </Router>
-  );
+  
+     <Router>
+       <Main />
+     </Router>
+   );
 }
 
 export default App;

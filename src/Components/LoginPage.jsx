@@ -1,13 +1,33 @@
 import React from "react";
 import { useState } from "react";
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+        const navigate=useNavigate();
         const [isSubmitted, setIsSubmitted] = useState(false);
+        const[formData,setFormData]=useState({email:'',password:'',});
+        const[res,serverResponse]=useState("");
+        const handleChange = (e) => {
+          setFormData({ ...formData, [e.target.name]: e.target.value });
+        };
       
-        const handleClick = (e) => {
+        const handleClick = async(e) => {
           e.preventDefault();
-          setIsSubmitted(true);
-          setTimeout(() => setIsSubmitted(false), 2000); 
+          try{
+            const response=await axios.post('http://localhost:3000/api/submit-form', formData);
+            serverResponse(response.data);
+            setIsSubmitted(true);
+            setTimeout(()=>{
+              navigate('/');
+            },1500);
+          } 
+          catch (error) {
+            serverResponse(error.response.data);
+            setIsSubmitted(true);
+            setTimeout(() => setIsSubmitted(false), 2000); 
+          }
+        
         };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black-900 to-blue-500">
@@ -31,6 +51,9 @@ const LoginPage = () => {
               autoComplete="email"
               required
               placeholder="Enter your email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
             />
           </div>
@@ -41,6 +64,9 @@ const LoginPage = () => {
             <input
               id="password"
               type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               required
               placeholder="Enter your password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
@@ -54,15 +80,23 @@ const LoginPage = () => {
                     ${isSubmitted ? 'bg-green-500' : 'bg-gradient-to-r from-black-900 via-blue-700 to-indigo-200'} 
                     text-white flex items-center justify-center relative`}
                 >
-                {isSubmitted ? (
-                    <span className="flex items-center gap-2 animate-bounce text-l">
-                    <span className="text-2xl animate-scale-150">🎶</span> Ready to listen!</span>
-                ) : (
-                    "Login"
-                )}
+                  
+                  {isSubmitted ? (
+                       res.message.length==13 ? (
+                          <span className="flex items-center gap-2 animate-bounce text-l">
+                            <span className="text-2xl animate-scale-150">🎶</span> Ready to listen!
+                          </span>
+                        ) : (
+                          <span className="flex items-center gap-2 animate-bounce text-l text-red-500">
+                            <span className="text-2xl animate-scale-150">❌</span> Error
+                          </span>
+                        )
+                      ) : (
+                        "Login"
+                      )}
+
         </button>
         </form>
-        {/* Optional: Register link */}
         <div className="mt-6 text-center">
           <span className="text-gray-600">Don’t have an account?</span>{" "}
           <a href="/signup" className="text-blue-600 hover:underline font-semibold">

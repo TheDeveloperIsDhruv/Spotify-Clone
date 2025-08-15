@@ -1,13 +1,42 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 
 const SignUp = () => {
+    const navigate=useNavigate();
     const [issubmited,onSubmited]=useState(false);
+    const[formData,setformData]=useState({firstname:"",lastname:"",dob:"",email:"",password:"",})
+    const[res,serverResponse]=useState("");
+    
+    const handleChange=(e)=>{
+      setformData({...formData,[e.target.name]:e.target.value});
+    }
 
-    const handleClick=(e)=>{
-        e.preventDefault();
+
+    const handleClick = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await axios.post('http://localhost:3000/api/submit-signup', formData);
+        // console.log(response.data);
+        serverResponse(response.data);
+    
+        // Show button success state
         onSubmited(true);
-        setTimeout(()=>onSubmited(false),3000)
+        
+        // Navigate after short delay
+        setTimeout(() => {
+          navigate("/login"); // Change this to your target route
+        }, 1500);
+    
+      } catch (error) {
+        // console.log(error.response.data);
+        serverResponse(error.response.data);
+        onSubmited(true);
+        setTimeout(() => onSubmited(false), 2000);
+      }
     };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black-900 via-green-700 to-black-200">
@@ -16,15 +45,18 @@ const SignUp = () => {
         <h2 className="font-bold text-3xl md:text-2xl text-center text-gray-800 mb-2">
           Create Your Account
         </h2>
-        <form className="space-y-6" onSubmit={handleClick}>
+        <form className="space-y-6" >
           <div className="flex flex-col md:flex-row gap-4">
             <div className="w-full">
-              <label htmlFor="firstName" className="block text-gray-700 mb-1 font-medium">
+              <label htmlFor="firstname" className="block text-gray-700 mb-1 font-medium">
                 First Name
               </label>
               <input
-                id="firstName"
+                id="firstname"
                 type="text"
+                name="firstname"
+                value={formData.firstname}
+                onChange={handleChange}
                 placeholder="e.g. Jane"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none bg-white focus:border-purple-600 focus:ring-2 focus:ring-purple-100 transition"
                 required
@@ -36,7 +68,10 @@ const SignUp = () => {
               </label>
               <input
                 id="lastName"
+                name="lastname"
                 type="text"
+                value={formData.lastname}
+                onChange={handleChange}
                 placeholder="e.g. Doe"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none bg-white focus:border-purple-600 focus:ring-2 focus:ring-purple-100 transition"
                 required
@@ -50,6 +85,9 @@ const SignUp = () => {
             </label>
             <input
               id="dob"
+              name="dob"
+              value={formData.dob}
+              onChange={handleChange}
               type="date"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none bg-white focus:border-purple-600 focus:ring-2 focus:ring-purple-100 transition"
               required
@@ -62,7 +100,10 @@ const SignUp = () => {
             </label>
             <input
               id="email"
+              name="email"
               type="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="you@example.com"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none bg-white focus:border-pink-600 focus:ring-2 focus:ring-pink-100 transition"
               required
@@ -76,6 +117,9 @@ const SignUp = () => {
             <input
               id="password"
               type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
               placeholder="Create a password"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg outline-none bg-white focus:border-pink-600 focus:ring-2 focus:ring-pink-100 transition"
               required
@@ -84,15 +128,24 @@ const SignUp = () => {
 
           <button
             type="submit"
+            onClick={handleClick}
             disabled={issubmited}
             className={`w-full py-2 font-bold rounded-lg shadow-lg text-lg tracking-wide transition
                 ${issubmited ? 'bg-green-500' : 'bg-gradient-to-r from-black-900 via-green-700 to-black-200'} 
                 text-white flex items-center justify-center relative`}
             >
              {issubmited ? (
+                    res.message.length==13? (
                     <span className="flex items-center gap-2 animate-bounce text-l">
                     <span className="text-2xl animate-scale-150">🎉</span> Success!</span>
-                ) : (
+                    
+                )
+                : (
+                  <span className="flex items-center gap-2 animate-bounce text-l text-red-500">
+                    <span className="text-2xl animate-scale-150">❌</span> Error
+                  </span>
+                ) 
+              ) : (
                     "Sign Up"
                 )}
           </button>
