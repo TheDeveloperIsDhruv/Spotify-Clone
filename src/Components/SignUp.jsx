@@ -28,7 +28,7 @@ const SignUp = () => {
         
         // Navigate after short delay
         setTimeout(() => {
-          navigate("/login"); // Change this to your target route
+          navigate("/login"); 
         }, 1500);
     
       } catch (error) {

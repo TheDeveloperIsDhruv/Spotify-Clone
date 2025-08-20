@@ -1,14 +1,18 @@
 import express from 'express';
 import cors from 'cors';
 import pkg from 'pg';
-
+import dotenv from 'dotenv';
 const { Client } = pkg;
 
-const connectionString=""; // Get the link from Neon Serverless Database
 
+dotenv.config();
+// const connectionString="postgresql://neondb_owner:npg_NAlbDQti7y5L@ep-crimson-wave-aez6zso9-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"; // Get the link from Neon Serverless Database
+
+// Check if it loaded
+console.log('DATABASE_URL exists?', !!process.env.DATABASE_URL);
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const connectionString=process.env.DATABASE_URL;
 // ✅ Connect to Neon using DATABASE_URL (much simpler than multiple vars)
 const client = new Client({
   connectionString,
@@ -22,7 +26,7 @@ const connectDB = async () => {
     console.log("✅ Connected to Neon PostgreSQL");
   } catch (err) {
     console.error("❌ Database connection error:", err.message);
-    process.exit(1); // Stop app if DB connection fails
+    process.exit(1); 
   }
 };
 
