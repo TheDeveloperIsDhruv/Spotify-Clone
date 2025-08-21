@@ -8,6 +8,7 @@ const LoginPage = () => {
         const [isSubmitted, setIsSubmitted] = useState(false);
         const[formData,setFormData]=useState({email:'',password:'',});
         const[res,serverResponse]=useState("");
+        const [isSuccess, setIsSuccess] = useState(false);
         const handleChange = (e) => {
           setFormData({ ...formData, [e.target.name]: e.target.value });
         };
@@ -17,6 +18,7 @@ const LoginPage = () => {
           try{
             const response=await axios.post('http://localhost:3000/api/submit-form', formData);
             serverResponse(response.data);
+            setIsSuccess(true);
             setIsSubmitted(true);
             setTimeout(()=>{
               navigate('/');
@@ -24,6 +26,7 @@ const LoginPage = () => {
           } 
           catch (error) {
             serverResponse(error.response.data);
+            setIsSuccess(false);
             setIsSubmitted(true);
             setTimeout(() => setIsSubmitted(false), 2000); 
           }
@@ -79,23 +82,7 @@ const LoginPage = () => {
                 className={`w-full py-2 font-bold rounded-lg shadow-lg text-lg tracking-wide transition
                     ${isSubmitted ? 'bg-green-500' : 'bg-gradient-to-r from-black-900 via-blue-700 to-indigo-200'} 
                     text-white flex items-center justify-center relative`}
-                >
-                  
-                  {isSubmitted ? (
-                       res.message.length==13 ? (
-                          <span className="flex items-center gap-2 animate-bounce text-l">
-                            <span className="text-2xl animate-scale-150">🎶</span> Ready to listen!
-                          </span>
-                        ) : (
-                          <span className="flex items-center gap-2 animate-bounce text-l text-red-500">
-                            <span className="text-2xl animate-scale-150">❌</span> Error
-                          </span>
-                        )
-                      ) : (
-                        "Login"
-                      )}
-
-        </button>
+                > Login </button>
         </form>
         <div className="mt-6 text-center">
           <span className="text-gray-600">Don’t have an account?</span>{" "}

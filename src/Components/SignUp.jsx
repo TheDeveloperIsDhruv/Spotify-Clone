@@ -135,7 +135,7 @@ const SignUp = () => {
                 text-white flex items-center justify-center relative`}
             >
              {issubmited ? (
-                    res.message.length==13? (
+                    res.message.length>10? (
                     <span className="flex items-center gap-2 animate-bounce text-l">
                     <span className="text-2xl animate-scale-150">🎉</span> Success!</span>
                     

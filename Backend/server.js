@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
   res.send("Hello, community!");
 });
 
+// Login endpoint - Fixed version
 app.post('/api/submit-form', async (req, res) => {
   const { email, password } = req.body;
 
@@ -50,12 +51,26 @@ app.post('/api/submit-form', async (req, res) => {
 
   console.log("Received form data:", { email, password });
 
-  // OPTIONAL: Store in DB example
-  // await client.query("INSERT INTO logins (email, password) VALUES ($1, $2)", [email, password]);
+  try {
+    // Fixed SQL syntax - correct spelling and parameter placeholders
+    const result = await client.query(
+      'SELECT email, password FROM users WHERE email = $1 AND password = $2',
+      [email, password]
+    );
 
-  return res.json({ message: "Form submitted successfully!" });
+    // Check if user was found
+    if (result.rows.length > 0) {
+      return res.json({ message: "Login success!" });
+    } else {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+  } catch (error) {
+    console.error("Database error:", error);
+    return res.status(500).json({ message: "Database error occurred", error: error.message });
+  }
 });
 
+// Signup endpoint - Fixed version
 app.post('/api/submit-signup', async (req, res) => {
   const { firstname, lastname, dob, email, password } = req.body;
 
@@ -65,8 +80,32 @@ app.post('/api/submit-signup', async (req, res) => {
 
   console.log("Received signup data:", { firstname, lastname, dob, email, password });
 
+  try {
+    // The INSERT query always returns a result object, not a boolean
+    const result = await client.query(
+      "INSERT INTO users(firstname, lastname, dob, email, password) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [firstname, lastname, dob, email, password]
+    );
 
-  return res.json({ message: "Signup successful!" });
+    // Check if insert was successful
+    if (result.rowCount > 0) {
+      return res.json({ 
+        message: "Signup successful!", 
+        user: result.rows[0] 
+      });
+    } else {
+      return res.status(400).json({ message: "Failed to create user" });
+    }
+  } catch (error) {
+    console.error("Database error:", error);
+    
+    // Handle specific database errors
+    if (error.code === '23505') { // Unique constraint violation
+      return res.status(409).json({ message: "User with this email already exists" });
+    }
+    
+    return res.status(500).json({ message: "Database error occurred", error: error.message });
+  }
 });
 
 // Start server
