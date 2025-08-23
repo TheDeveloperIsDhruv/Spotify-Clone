@@ -21,9 +21,9 @@ Tailwind CSS – Utility-first CSS framework for styling
 
 React Router – Client-side routing for seamless navigation
 
-Redux / Zustand / Context API – (Choose one you used) for global state management
+Redux for global state management
 
-Spotify Web API or Dummy JSON Data – For fetching music-related data
+Dummy JSON Data – For fetching music-related data
 
 Heroicons / FontAwesome – For icons
 
